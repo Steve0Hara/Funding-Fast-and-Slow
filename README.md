@@ -1,7 +1,7 @@
 # Thesis: Funding, Fast and Slow. 
 ## Data & Analysis workspace
 
-This `v4/` folder contains the **data pulls/exports** (Crunchbase, Companies House, patents, uni rankings) and the **notebooks/scripts** used to clean, enrich, engineer features, and run the empirical analyses for the thesis.
+This contains the **data pulls/exports** (Crunchbase, Companies House, patents, uni rankings) and the **notebooks/scripts** used to clean, enrich, engineer features, and run the empirical analyses for the thesis.
 
 ## Where to look for the results (HTML reports)
 
