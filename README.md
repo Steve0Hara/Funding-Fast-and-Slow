@@ -1,5 +1,5 @@
 # Thesis: Funding, Fast and Slow. 
-## Data & Analysis workspace
+## Data & Analysis workspace. Author: Stefan Wilneder.
 
 This contains the **data pulls/exports** (Crunchbase, Companies House, patents, uni rankings) and the **notebooks/scripts** used to clean, enrich, engineer features, and run the empirical analyses for the thesis.
 
