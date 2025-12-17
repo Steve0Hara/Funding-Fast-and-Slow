@@ -1,0 +1,136 @@
+# org_big_config.yaml
+base:
+  path: /Users/stefan/Desktop/Thesis/v4/Crunchbase Data/bulk_export/organizations.csv
+  select: ["uuid","name","created_at","legal_name","roles","domain",
+           "country_code","state_code","region","city","status",
+           "category_list","category_groups_list",
+           "num_funding_rounds","total_funding_usd",
+           "founded_on","last_funding_on","closed_on",
+           "employee_count","primary_role","num_exits"]
+  rename:
+    uuid: org_uuid
+    name: org_name
+    country_code: org_country
+    state_code: org_state
+    region: org_region
+    city: org_city
+
+joins:
+  # description
+  - type: exact
+    path: /Users/stefan/Desktop/Thesis/v4/Crunchbase Data/bulk_export/organization_descriptions.csv
+    select: ["uuid","description"]
+    rename: { uuid: org_uuid, description: org_description }
+    left_on: ["org_uuid"]
+    right_on: ["org_uuid"]
+    how: left
+
+  # parent name
+  - type: exact
+    path: /Users/stefan/Desktop/Thesis/v4/Crunchbase Data/bulk_export/org_parents.csv
+    select: ["uuid","parent_uuid","parent_name"]
+    rename: { uuid: child_org_uuid }
+    left_on: ["org_uuid"]
+    right_on: ["child_org_uuid"]
+    how: left
+
+  # IPO (exactly the 3 fields you want)
+  - type: exact
+    path: /Users/stefan/Desktop/Thesis/v4/Crunchbase Data/bulk_export/ipos.csv
+    select: ["org_uuid","went_public_on","valuation_price_usd","money_raised_usd"]
+    left_on: ["org_uuid"]
+    right_on: ["org_uuid"]
+    how: left
+
+final_order:
+  - org_uuid
+  - org_name
+  - legal_name
+  - status
+  - founded_on
+  - first_funding_date
+  - last_funding_on
+  - closed_on
+  - went_public_on
+  - acquired_on_first
+  - first_acquired_company_on
+  - domain
+  - homepage_url
+  - created_at
+  - org_created_at
+  - org_updated_at
+  - roles
+  - primary_role
+  - org_country
+  - org_state
+  - org_region
+  - org_city
+  - category_list
+  - category_groups_list
+  - category_names_from_catalog
+  - category_groups_from_catalog
+  - org_description
+  - parent_uuid
+  - parent_name
+  - first_funding_name
+  - first_funding_type
+  - first_funding_investment_type
+  - first_technicaly_funding_type
+  - first_funding_raised_usd
+  - first_round_size_to_total_funding
+  - first_funding_post_money_usd
+  - first_funding_investor_count
+  - first_round_investor_uuid
+  - first_funding_leads
+  - first_funding_investor_type
+  - funds_invested
+  - investor_types_all
+  - funding_rounds
+  # --- NEW: Explicitly ordering the individual round columns here ---
+  - funding_round_1
+  - funding_round_2
+  - funding_round_3
+  - funding_round_4
+  - funding_round_5
+  - funding_round_6
+  - funding_round_7
+  - funding_round_8
+  - funding_round_9
+  - funding_round_10
+  - funding_round_11
+  - funding_round_12
+  - funding_round_13
+  - funding_round_14
+  - funding_round_15
+  # ----------------------------------------------------------------
+  - weighted_time
+  - funding_25pct_date
+  - funding_25pct_round_number
+  - date_of_1_million
+  - num_funding_rounds
+  - total_funding_usd
+  - ipo_went_public_on
+  - ipo_created_at
+  - ipo_updated_at
+  - valuation_price_usd
+  - money_raised_usd
+  - acquired_by
+  - acquired_on_first
+  - acquired_on_last
+  - has_acquired
+  - last_acquired_company_on
+  - employee_count
+  - num_exits
+  - founders
+  - founders_count
+  - founders_female_count
+  - founders_male_count
+  - founders_linkedin_count
+  - founders_countries
+  - founders_has_phd
+  - founders_has_mba
+  - founders_has_jd
+  - founders_has_masters
+  - founders_has_bachelors
+  - founders_degrees
+  - founders_descriptions
